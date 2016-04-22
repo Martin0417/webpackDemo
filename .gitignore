@@ -1,4 +1,4 @@
 logs
 *.log
 node_modules
-/src/dist
+/src/dist/*
