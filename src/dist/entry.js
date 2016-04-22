@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	
 	__webpack_require__(1);
-	__webpack_require__(7)();
+	__webpack_require__(5)();
 	module.exports = function(){
 	    alert('this is exports');
 	}
@@ -71,14 +71,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	var content = __webpack_require__(2);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
+	var update = __webpack_require__(4)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/mcss-loader/index.js!./style.mcss", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/mcss-loader/index.js!./style.mcss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?root=.!./../../node_modules/mcss-loader/index.js!./style.mcss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?root=.!./../../node_modules/mcss-loader/index.js!./style.mcss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, ".title{\n\tfont-size:28px;\n\tfont-weight:bold;\n\tcolor:#ccc;\n}\n.title a{\n\tcolor:#000;\n}\n.title a:hover{\n\tcolor:#666;\n}\n.photo{\n\tdisplay:inline-block;\n\twidth:60px;\n\theight:56px;\n\tbackground:url(" + __webpack_require__(4) + ") no-repeat 0 0;\n\tbackground-size:60px 56px;\n}\n.img{\n\twidth:600px;\n\theight:336px;\n\tbackground:url(" + __webpack_require__(5) + ") no-repeat 0 0;\n}", ""]);
+	exports.push([module.id, ".title{\n\tfont-size:28px;\n\tfont-weight:bold;\n\tcolor:#ccc;\n}\n.title a{\n\tcolor:#000;\n}\n.title a:hover{\n\tcolor:#666;\n}\n.photo{\n\tdisplay:inline-block;\n\twidth:60px;\n\theight:56px;\n\tbackground:url(" + __webpack_require__(6) + ") no-repeat 0 0;\n\tbackground-size:60px 56px;\n}\n.img{\n\twidth:600px;\n\theight:336px;\n\tbackground:url(" + __webpack_require__(7) + ") no-repeat 0 0;\n}", ""]);
 
 	// exports
 
@@ -159,18 +159,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "ceec21a6250624e5f7cf37e72adfd33d.jpg";
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "1136030302568b6228dcbc04419182af.jpg";
-
-/***/ },
-/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -422,16 +410,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/* 5 */
+/***/ function(module, exports) {
 
 	
-	__webpack_require__(1);
 	var inject = function(){
 	    document.getElementById('cnt').innerHTML = '<div class="title"><span class="photo"></span><a href="http://www.kaola.com">地球破洞</a></div><div class="img"></div>';
 	}
 
 	module.exports = inject;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "ceec21a6250624e5f7cf37e72adfd33d.jpg";
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "1136030302568b6228dcbc04419182af.jpg";
 
 /***/ }
 /******/ ])
