@@ -3,6 +3,7 @@ var path = require('path');
 var env = process.env.WEBPACK_ENV.trim();
 
 var libraryName = '';
+var publicPath = '';//静态资源
 var suffix;
 var plugins = [];
 
@@ -14,8 +15,10 @@ if(env === 'build'){
             minimize : true
         }));
     suffix = libraryName+'.min.js';
+    publicPath = 'http://martin0417.github.io/webpackDemo/src/dist/';
 }else{
     suffix = libraryName + '.js';
+    publicPath = '';
 }
 
 
@@ -28,7 +31,7 @@ module.exports = {
 	    filename: "[name]"+suffix,
         library:"[name]",
         libraryTarget:'umd',
-        publicPath:'http://localhost:8080/src/dist/'
+        publicPath:publicPath
 	},
     module: {
         loaders: [

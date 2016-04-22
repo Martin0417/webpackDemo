@@ -44,7 +44,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:8080/src/dist/";
+/******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, ".title{\n\tfont-size:26px;\n\tfont-weight:bold;\n\tcolor:#ccc;\n}\n.title a{\n\tcolor:#000;\n}\n.title a:hover{\n\tcolor:#666;\n}\n.photo{\n\tdisplay:inline-block;\n\twidth:60px;\n\theight:56px;\n\tbackground:url(" + __webpack_require__(4) + ") no-repeat 0 0;\n\tbackground-size:60px 56px;\n}\n.img{\n\twidth:600px;\n\theight:336px;\n\tbackground:url(" + __webpack_require__(5) + ") no-repeat 0 0;\n}", ""]);
+	exports.push([module.id, ".title{\n\tfont-size:28px;\n\tfont-weight:bold;\n\tcolor:#ccc;\n}\n.title a{\n\tcolor:#000;\n}\n.title a:hover{\n\tcolor:#666;\n}\n.photo{\n\tdisplay:inline-block;\n\twidth:60px;\n\theight:56px;\n\tbackground:url(" + __webpack_require__(4) + ") no-repeat 0 0;\n\tbackground-size:60px 56px;\n}\n.img{\n\twidth:600px;\n\theight:336px;\n\tbackground:url(" + __webpack_require__(5) + ") no-repeat 0 0;\n}", ""]);
 
 	// exports
 
