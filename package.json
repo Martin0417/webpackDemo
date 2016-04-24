@@ -6,7 +6,8 @@
   "keywords": [
     "webpack",
     "demo",
-    "hole"
+    "css",
+    "code spliting"
   ],
   "author": "mating <18767122887@163.com>",
   "license": "MIT",
@@ -16,6 +17,7 @@
     "mcss-loader": "latest",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
+    "html-loader":"latest",
     "webpack": "^1.12.8",
     "webpack-dev-server": "^1.14.1"
   },

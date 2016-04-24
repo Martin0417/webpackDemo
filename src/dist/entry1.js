@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["entry"] = factory();
+		exports["entry1"] = factory();
 	else
-		root["entry"] = factory();
+		root["entry1"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
@@ -37,7 +37,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		0:0
+/******/ 		2:0
 /******/ 	};
 
 /******/ 	// The require function
