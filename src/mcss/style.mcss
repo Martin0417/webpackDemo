@@ -11,10 +11,19 @@ body{
         font-size: 28px;
         font-weight: bold;
         color: #ccc;
-        a {
-            color: #000000;
+        button {
+            width: 136px;
+            height: 28px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            -webkit-box-shadow: 2px 2px 2px #666;
+            -moz-box-shadow: 2px 2px 2px #666;
+            -ms-box-shadow: 2px 2px 2px #666;
+            box-shadow: 2px 2px 2px #666;
             &:hover {
-                color: #666;
+                color: #000;
             }
         }
     }
@@ -22,7 +31,7 @@ body{
         display: inline-block;
         width: 60px;
         height: 56px;
-        vertical-align: -10px;
+        vertical-align: -15px;
         background: url(../images/imgSmall.jpg) no-repeat 0 0;
         background-size: 60px 56px;
     }

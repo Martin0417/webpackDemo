@@ -147,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "body{\n\tmargin:0;\n\tpadding:0;\n}\n.m-cnt{\n\tmargin:0 auto;\n\twidth:600px;\n\ttext-align:center;\n}\n.m-cnt .title{\n\tmargin:15px 0;\n\tfont-size:28px;\n\tfont-weight:bold;\n\tcolor:#ccc;\n}\n.m-cnt .title a{\n\tcolor:#000;\n}\n.m-cnt .title a:hover{\n\tcolor:#666;\n}\n.m-cnt .photo{\n\tdisplay:inline-block;\n\twidth:60px;\n\theight:56px;\n\tvertical-align:-10px;\n\tbackground:url(" + __webpack_require__(4) + ") no-repeat 0 0;\n\tbackground-size:60px 56px;\n}\n.m-cnt .img{\n\twidth:600px;\n\theight:336px;\n\tbackground:url(" + __webpack_require__(5) + ") no-repeat 0 0;\n}", ""]);
+	exports.push([module.id, "body{\n\tmargin:0;\n\tpadding:0;\n}\n.m-cnt{\n\tmargin:0 auto;\n\twidth:600px;\n\ttext-align:center;\n}\n.m-cnt .title{\n\tmargin:15px 0;\n\tfont-size:28px;\n\tfont-weight:bold;\n\tcolor:#ccc;\n}\n.m-cnt .title button{\n\twidth:136px;\n\theight:28px;\n\tfont-size:14px;\n\tfont-weight:bold;\n\tcolor:#666;\n\tcursor:pointer;\n\t-webkit-box-shadow:2px 2px 2px #666;\n\t-moz-box-shadow:2px 2px 2px #666;\n\t-ms-box-shadow:2px 2px 2px #666;\n\tbox-shadow:2px 2px 2px #666;\n}\n.m-cnt .title button:hover{\n\tcolor:#000;\n}\n.m-cnt .photo{\n\tdisplay:inline-block;\n\twidth:60px;\n\theight:56px;\n\tvertical-align:-15px;\n\tbackground:url(" + __webpack_require__(4) + ") no-repeat 0 0;\n\tbackground-size:60px 56px;\n}\n.m-cnt .img{\n\twidth:600px;\n\theight:336px;\n\tbackground:url(" + __webpack_require__(5) + ") no-repeat 0 0;\n}", ""]);
 
 	// exports
 
@@ -478,7 +478,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	
 	var inject = function(){
-	    var tpl = '<div class="title"><span class="photo"></span><a href="javascript:;" onClick="showDialog()">地球破洞</a></div>\
+	    var tpl = '<div class="title"><span class="photo"></span><button href="javascript:;" onClick="showDialog()">地球破洞相关资讯</button></div>\
 	               <div class="img"></div>'
 	    document.getElementById('cnt').innerHTML = tpl;
 	    window.showDialog = function(){

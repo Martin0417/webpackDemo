@@ -1,6 +1,6 @@
 
 var inject = function(){
-    var tpl = '<div class="title"><span class="photo"></span><a href="javascript:;" onClick="showDialog()">地球破洞</a></div>\
+    var tpl = '<div class="title"><span class="photo"></span><button href="javascript:;" onClick="showDialog()">地球破洞相关资讯</button></div>\
                <div class="img"></div>'
     document.getElementById('cnt').innerHTML = tpl;
     window.showDialog = function(){

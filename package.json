@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "set WEBPACK_ENV=build && webpack",
-    "dev": "set WEBPACK_ENV=dev && webpack --progress --color --watch",
+    "dev": "set WEBPACK_ENV=dev && webpack --progress --color --watch --display-error-details",
     "dev-server": "set WEBPACK_ENV=dev && webpack-dev-server --hot --inline",
     "start": "npm run dev-server"
   }
