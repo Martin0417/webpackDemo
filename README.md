@@ -4,18 +4,33 @@
  
 ![modules with dependencies ---webpack---> static assets](http://webpack.github.io/assets/what-is-webpack.png)
 
+
+> Webpack 是德国开发者 Tobias Koppers 开发的模块加载器
+Instagram 工程师认为这个方案很棒, 似乎还把作者招过去了
+
 [官方文档入口](http://webpack.github.io/docs/)
-内容挺多，学习成本有点高，但是坚持看下来的话肯定还是很有收获的，里面不单单是webpack的介绍、教程，还有对其他打包器的看法见解，以及很多其他相关知识。
+内容挺多，学习成本有点高，但是坚持看下来的话肯定还是很有收获的，里面不单单是webpack的介绍、教程，还有对[各种模块化实现的优缺点比较](https://webpack.github.io/docs/motivation.html)，对其他打包器的看法见解，以及很多其他相关知识。
+
+## 各种模块化实现的优缺点比较
+- 英文：https://webpack.github.io/docs/motivation.html
+- 中文：http://zhaoda.net/webpack-handbook/module-system.html
 
 ## webpack要实现的目标
-- Split the dependency tree into chunks loaded on demand
-- Keep initial loading time low
+- Split the dependency tree into chunks loaded on demand 
+- Keep initial loading time low 
 - Every static asset should be able to be a module
 - Ability to integrate 3rd-party libraries as modules
 - Ability to customize nearly every part of the module bundler
 - Suited for big projects
 
-[what-is-webpack](http://webpack.github.io/docs/what-is-webpack.html)
+----------
+
+- 将依赖打包进另外的代码块中，在需要的时候才加载进来
+- 减少页面初始化的时间
+- 任何资源都应该可以被当做模块
+- 能够将第三方库当做模块整合进来
+- 能够让开发者几乎定制打包器的每个部分
+- 更适用于大型单页面应用
 
 ## 安装与使用
 **全局**：$ npm install webpack -g
@@ -195,98 +210,131 @@ module.exports = {
 ```
 
 ## 插件系统
+插件是在webpack在打包的过程中增加一些额外的处理功能。
+webpack的插件分为两种：和。
+- **内建插件**：webpack自带的一些比较常用的插件，方便使用
+- **其他插件**：由其他开发者开发，对webpack功能的补充
 
-介绍两个webpack自带的插件
-- 代码压缩插件
-
-这个比较常用，
-
-
-web-dev-server
-
-
-## web-dev-server
-
-
-## DEMO的配置文件解析
-
-
-## 小例子
-[getting-started](http://webpack.github.io/docs/tutorials/getting-started/)
-> 
-├─node_modules
-├─src   
-      ├─dist 打包后文件目录
-            ├─entry.js **打包后的脚本**
-            └─1136030302568b6228dcbc04419182af.jpg **经过file-loader处理的大图片**
-      ├─index.html **页面**
-      ├─entry.js **入口脚本**
-      ├─content.js **具体逻辑**
-      ├─style.mcss **样式**
-      ├─imgBig.jpg **大图片**
-      └─imgSmall.jpg **小图片**
-├─package.json
-├─README.md
-└─webpack.config.js **webpack配置**
-
-index.html
-``` html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>webpack test</title>
-</head>
-<body>
-    <div id='cnt'></div>
-    <script src="dist/entry.js"></script>
-</body>
-</html>
-```
-
-entry.js
-``` javascript
-require('./style.mcss');
-require('./content.js')();
-module.exports = function(){
-    alert('exports');
-}
-```
-webpack.config.js
+插件通过在配置文件中配置plugins参数使用，配置方法如下：
 ``` javascript
 var webpack = require('webpack');
-var path = require('path');
-var env = process.env.WEBPACK_ENV.trim();
+module.exports = {
+    entry: {..},
+    output: {..},
+    module: {..},
+    plugins : [new webpack.optimize.UglifyJsPlugin({//内建的压缩代码插件
+            compress: {
+                warnings: false
+            }
+        })]
+}
+```
 
-var libraryName = '';
-var outputFile;
-var plugins = [];
+官方文档中提供了[插件列表](https://webpack.github.io/docs/list-of-plugins.html)，这里挑几个插件简介：
+- 代码压缩插件`new webpack.optimize.UglifyJsPlugin(options)`
+对webpack打包生成的代码块进行混淆、压缩。相关配置参见[UglifyJS options](https://github.com/mishoo/UglifyJS2#usage)。
+- 共用代码块提取插件 `new webpack.optimize.CommonsChunkPlugin(options)`
+当有多个入口脚本时，可以配置该插件对这些脚本的公共依赖进行提取，避免公共依赖重复打包。
+- 动态html模板插件 `new html-webpack-plugin(options)`
+根据入口脚本，动态的再页面中插入css、script，同时还有压缩html、删除注释、其他动态数据等功能。
+
+## web-dev-server
+webpack提供的开发工具，启动后会默认监听8080端口，支持监测资源变动刷新页面、热替换、代理等功能，当资源变动时会重新打包，方便本地开发调试。
+使用方法：
+- CLI `webpack-dev-server --hot --inline` 
+    - hot 热替换 
+    - inline 自动刷新页面
+- 也可在config配置文件中配置：
+``` javascript
+var server = new WebpackDevServer(compiler, {
+  contentBase: "/path/to/directory",
+  hot: true,
+  historyApiFallback: false,
+  // Set this if you want to enable gzip compression for assets
+  compress: true,
+  proxy: {
+    "*": "http://localhost:9090"
+  },
+  staticOptions: {
+  },
+  // webpack-dev-middleware options
+  quiet: false,
+  noInfo: false,
+  lazy: true,
+  filename: "bundle.js",
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
+  },
+  publicPath: "/assets/",
+  headers: { "X-Custom-Header": "yes" },
+  stats: { colors: true }
+});
+server.listen(8080, "localhost", function() {});
+```
+
+更多介绍点这里 https://webpack.github.io/docs/webpack-dev-server.html
+
+## DEMO的配置文件解析
+**DEMO目录结构参见源码**
+**[页面 http://martin0417.github.io/webpackDemo/](http://martin0417.github.io/webpackDemo/)**
+**[源码 https://github.com/Martin0417/webpackDemo/tree/gh-pages)](https://github.com/Martin0417/webpackDemo/tree/gh-pages)**
+
+#### webpack.config.js
+``` javascript
+var webpack = require('webpack');
+
+var path = require('path');
+// 执行环境
+var env = (process.env.WEBPACK_ENV||'').trim();
+// 插件
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPluginConfig = {
+    title : 'a webpack demo',
+    filename:'../../index.html',    //生成的html存放路径，相对于 path
+    template:'./src/index.html',    //html模板路径
+    inject:true,    //允许插件修改哪些内容，包括head与body
+    hash:true,    //为静态资源生成hash值
+    minify:{    //压缩HTML文件
+        removeComments:true,    //移除HTML中的注释
+        collapseWhitespace:false    //删除空白符与换行符
+    }
+};
+
+var publicPath = '';//静态资源路径
+var suffix;//文件名后缀
+var plugins = [];//插件数组
 
 if(env === 'build'){
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
+    plugins.push(new webpack.optimize.UglifyJsPlugin({//压缩代码
             compress: {
                 warnings: false
             },
-            minimize : true
+            minimize : true,
+            except: ['$super', '$', 'exports', 'require']//排除关键字
         }));
-    outputFile = libraryName+'.min.js';
+    suffix = libraryName+'.min.js';
+    publicPath = 'http://martin0417.github.io/webpackDemo/src/dist/';
 }else{
-    outputFile = libraryName + '.js';
+    suffix = libraryName + '.js';
+    publicPath = '/src/dist/';
 }
-
 
 module.exports = {
     entry: {
-        entry:'./src/entry.js'
+        entry:'./src/entry.js'//入口脚本
     },
     output: {
-        path: path.resolve('./src/dist'),
-        filename: "[name]"+outputFile,
+        path: path.resolve('./src/dist'),//打包后脚本的输出路径
+        filename: "[name]"+suffix,//打包后脚本的名字
+        chunkFilename: "[id].chunk.js",//分割脚本块的名字
         library:"[name]",
         libraryTarget:'umd',
-        publicPath:'http://localhost:8080/src/dist/'
+        publicPath:publicPath//静态资源路径
     },
     module: {
+        //加载器
         loaders: [
         {
             test: /\.mcss$/,
@@ -294,27 +342,35 @@ module.exports = {
         },
         {
             test: /\.(jpg|png)$/,
-            loader: 'file?name=[hash].[ext]'
+            loader: 'url?name=[hash].[ext]&limit=24576'
+        },
+        {
+            test: /\.html$/,
+            loader: 'html'
         }
         ]
     },
     resolve:{
-        root:path.resolve('./src'),
-        extensions:["",".js"]
+        //require路径的别名
+        alias:{
+            'root' : path.resolve('./src/')
+        },
+        extensions:["",".js"]//解析文件的默认后缀
     },
-    plugins:plugins
+    plugins:plugins//插件
 }
 ```
 
-│ └ ├
+### 循环加载处理
 
 
-
-### kaola-fed-lib
+### 应用的工程
+[kaola-fed-lib](https://g.hz.netease.com/haitao/kaola-fed-lib)应用了webpack进行打包。
 github：ssh://git@g.hz.netease.com:22222/haitao/kaola-fed-lib.git
 
 
 ## 参考文档
+- [webpack官方文档](https://webpack.github.io/docs/)
 - [[译] 基于 Webpack 和 ES6 打造 JavaScript 类库 #56](https://github.com/cssmagic/blog/issues/56)
 - [Webpack 一探究竟](http://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651220238&idx=1&sn=ebdba528f199e10f6b273c3a6fd04650&scene=1&srcid=0419dAU9wBzpuMeoPVOqaM83&from=singlemessage&isappinstalled=0#wechat_redirect)
 - [基于webpack的前端工程化开发解决方案探索](http://www.cnblogs.com/souvenir/p/5015418.html)
