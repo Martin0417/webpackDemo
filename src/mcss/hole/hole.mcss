@@ -32,13 +32,13 @@ body{
         width: 60px;
         height: 56px;
         vertical-align: -15px;
-        background: url(../images/imgSmall.jpg) no-repeat 0 0;
+        background: url(../../images/hole/imgSmall.jpg) no-repeat 0 0;
         background-size: 60px 56px;
     }
     .img{
         width: 600px;
         height: 336px;
-        background: url(../images/imgBig.jpg) no-repeat 0 0;
+        background: url(../../images/hole/imgBig.jpg) no-repeat 0 0;
     }
 }
 

@@ -7,9 +7,9 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlWebpackPluginConfig = {
     title : 'a webpack demo',
-    filename:'../../index.html',    //生成的html存放路径，相对于 path
-    template:'./src/index.html',    //html模板路径
-    inject:true,    //允许插件修改哪些内容，包括head与body
+    filename:'html/hole.html',    //生成的html存放路径，相对于 path
+    template:'./src/html/hole.html',    //html模板路径
+    inject:'body',    //允许插件修改哪些内容，包括head与body
     hash:true,    //为静态资源生成hash值
     minify:{    //压缩HTML文件
         removeComments:true,    //移除HTML中的注释
@@ -20,11 +20,11 @@ var HtmlWebpackPluginConfig = {
 var libraryName = '';
 var publicPath = '';//静态资源
 var suffix;
+var outputPath = '';
 var plugins = [];
-// var plugins = [new ExtractTextPlugin('[name].css'),new HtmlWebpackPlugin(HtmlWebpackPluginConfig)];
-// var plugins = [new webpack.optimize.CommonsChunkPlugin('commons.js',['entry','entry1'])];
-
+Array.prototype.push.apply(plugins,[new ExtractTextPlugin('css/[name].css'),new HtmlWebpackPlugin(HtmlWebpackPluginConfig)]);
 if(env === 'build'){
+    // plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(new webpack.optimize.UglifyJsPlugin({//压缩代码
             compress: {
                 warnings: false
@@ -33,21 +33,24 @@ if(env === 'build'){
             except: ['$super', '$', 'exports', 'require']//排除关键字
         }));
     suffix = libraryName+'.min.js';
-    publicPath = 'http://martin0417.github.io/webpackDemo/src/dist/';
+    outputPath = './src/dist_build';
+    // publicPath = '/dist_build/';
+    publicPath = 'http://martin0417.github.io/webpackDemo/src/dist_build/';
 }else{
     suffix = libraryName + '.js';
-    publicPath = '/src/dist/';
+    outputPath = './src/dist';
+    publicPath = '/dist/';
 }
 
 
 module.exports = {
 	entry: {
-        entry:'./src/entry.js'
+        entry:'./src/javascript/pages/hole/hole.js'
     },
 	output: {
-	    path: path.resolve('./src/dist'),
-	    filename: "[name]"+suffix,
-        chunkFilename: "[id].chunk.js",
+	    path: path.join(__dirname,outputPath),
+	    filename: "js/[name]"+suffix,
+        chunkFilename: "js/[hash:6].chunk.js",
         library:"[name]",
         libraryTarget:'umd',
         publicPath:publicPath
@@ -60,7 +63,7 @@ module.exports = {
         },
         {
             test: /\.(jpg|png)$/,
-            loader: 'url?name=[hash].[ext]&limit=24576'
+            loader: 'url?name=image/[name][hash:6].[ext]&limit=24576'
         },
         {
             test: /\.html$/,
@@ -69,9 +72,9 @@ module.exports = {
         ]
     },
     resolve:{
-        // root:path.resolve('./src'),
+        // root:path.join(__dirname,'./src'),
         alias:{
-            'root' : path.resolve('./src/')
+            'root' : path.join(__dirname,'./src/')
         },
         extensions:["",".js"]
     },
