@@ -52,13 +52,14 @@ if(env === 'build'){
         }));
     suffix = libraryName+'.js';
     outputPath = './dist_build';
-    publicPath = '/dist_build/';
-    // publicPath = 'http://martin0417.github.io/webpackDemo/dist_build/';
+    // publicPath = '/dist_build/';
+    publicPath = 'http://martin0417.github.io/webpackDemo/dist_build/';
 }else{
     // gulp.src('dist').pipe(clean());
     suffix = libraryName + '.js';
     outputPath = './dist';
-    publicPath = '/dist/';
+    // publicPath = '/dist/';
+    publicPath = 'http://martin0417.github.io/webpackDemo/dist/';
 }
 
 
