@@ -13,19 +13,30 @@
   "license": "MIT",
   "devDependencies": {
     "css-loader": "^0.23.0",
+    "del": "^2.2.0",
+    "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "*",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-md5-plus": "0.1.8",
+    "gulp-rev": "^5.1.0",
+    "gulp-rev-collector": "^1.0.0",
+    "gulp-sequence": "^0.4.5",
+    "html-loader": "latest",
+    "html-webpack-plugin": "^1.7.0",
     "mcss-loader": "latest",
     "style-loader": "^0.13.0",
+    "through2": "^2.0.1",
     "url-loader": "^0.5.7",
-    "html-loader":"latest",
     "webpack": "^1.12.8",
-    "webpack-dev-server": "^1.14.1",
-    "extract-text-webpack-plugin": "^0.9.1",
-    "html-webpack-plugin": "^1.7.0"
+    "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "build": "set WEBPACK_ENV=build && webpack",
+    "build": "set WEBPACK_ENV=build && webpack && gulp build",
     "dev": "set WEBPACK_ENV=dev && webpack --progress --color --watch --display-error-details",
+    "puer": "puer",
     "dev-server": "set WEBPACK_ENV=dev && webpack-dev-server --hot --inline",
     "start": "npm run dev-server"
   }
