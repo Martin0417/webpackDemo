@@ -62,32 +62,33 @@ if(env === 'build'){
     publicPath = 'http://martin0417.github.io/webpackDemo/dist/';
 }
 
-
-function getEntry() {
-  var jsPath = path.join(__dirname, 'src/javascript/pages');
+function getEntry(jsDirPath) {
+  var jsEntryPath = path.join(__dirname, jsDirPath);
   var matchs = [], files = {};
   function walk(jsPathArg){
     var dirs = fs.readdirSync(jsPathArg);
     dirs.forEach(function (item) {
-        if(item.match(/\.js$/)){
+        var curPath = path.join(jsPathArg,item);
+        var stat = fs.lstatSync(curPath);
+        if(!stat.isDirectory()){
             matchs = item.match(/(.+\.entry)\.js$/);
             if (matchs) {
-              files[matchs[1]] = '.\\'+path.join(path.relative(__dirname,jsPathArg), item);
+              var key = path.join(path.relative(jsEntryPath,jsPathArg), matchs[1]),
+                  val = path.join(path.relative(__dirname,jsPathArg), item);
+              files[key] = './' + val;
             }
-        }else{
-            walk(path.join(jsPathArg,item));
+        } else {
+            walk(curPath);
         }
     });
   }
-  walk(jsPath);
+  walk(jsEntryPath);
   return files;
 }
 
-console.dir(path.join(__dirname,outputPath));
-
 module.exports = {
     devtool: "source-map",
-	entry: getEntry(),
+	entry: getEntry('src/javascript/pages'),
 	output: {
 	    path: path.join(__dirname,outputPath),
 	    filename: "js/[name]"+suffix,
