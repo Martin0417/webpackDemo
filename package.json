@@ -39,6 +39,6 @@
     "puer": "puer",
     "dev-server": "set WEBPACK_ENV=dev && webpack-dev-server --hot --inline",
     "start": "npm run dev-server",
-    "test-travis":"npm run build && exit 1"
+    "test-travis":"npm run build"
   }
 }
