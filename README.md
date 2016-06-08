@@ -1,9 +1,5 @@
 # 浅谈webpack
-[![Gitter][gitter-image]][gitter-url]
-[![NPM version][npm-image]][npm-url]
-[![Build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![Downloads][downloads-image]][downloads-url]
+[![Build Status](https://travis-ci.org/Martin0417/webpackDemo.svg?branch=master)](https://travis-ci.org/Martin0417/webpackDemo)
 > webpack, the flexible (unbiased,extensible,production,open source) module bundler.
  
 ![modules with dependencies ---webpack---> static assets](http://webpack.github.io/assets/what-is-webpack.png)
