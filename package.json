@@ -38,6 +38,7 @@
     "dev": "set WEBPACK_ENV=dev && webpack --progress --color --watch --display-error-details",
     "puer": "puer",
     "dev-server": "set WEBPACK_ENV=dev && webpack-dev-server --hot --inline",
-    "start": "npm run dev-server"
+    "start": "npm run dev-server",
+    "test-travis":"npm run build"
   }
 }
